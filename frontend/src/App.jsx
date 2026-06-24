@@ -20,7 +20,7 @@ export default function App() {
     setError("");
     setCode("");
     try {
-      const res = await axios.post("http://localhost:5000/generate", {
+      const res = await axios.post("https://pic2code.onrender.com/generate", {
         image: base64Image,
         framework,
       });
@@ -72,12 +72,12 @@ export default function App() {
         background: darkMode ? "#111" : "#fff"
       }}>
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <span style={{ fontSize: 28 }}></span>
+          <span style={{ fontSize: 28 }}>🖼️</span>
           <span style={{ fontSize: 22, fontWeight: 700 }}>Pic2Code</span>
           <span style={{
             fontSize: 11, padding: "2px 8px", borderRadius: 20,
             background: "#7c3aed", color: "#fff", fontWeight: 600
-          }}></span>
+          }}>AI</span>
         </div>
         <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
           <button
@@ -95,7 +95,6 @@ export default function App() {
       </div>
 
       <div style={{ maxWidth: 1300, margin: "0 auto", padding: "24px 32px" }}>
-        {/* Upload + Preview side by side */}
         <div style={{ display: "grid", gridTemplateColumns: code ? "1fr 1fr" : "1fr", gap: 24, marginBottom: 24 }}>
           <div>
             <UploadZone onImage={generate} image={image} darkMode={darkMode} loading={loading} />
@@ -109,12 +108,9 @@ export default function App() {
               </div>
             )}
           </div>
-          {code && (
-            <PreviewPanel code={code} darkMode={darkMode} />
-          )}
+          {code && <PreviewPanel code={code} darkMode={darkMode} />}
         </div>
 
-        {/* Code Display */}
         {code && (
           <CodeDisplay
             code={code}
@@ -125,7 +121,6 @@ export default function App() {
           />
         )}
 
-        {/* History */}
         {history.length > 1 && (
           <div style={{ marginTop: 32 }}>
             <p style={{ fontSize: 13, color: "#888", marginBottom: 12 }}>Recent generations</p>
